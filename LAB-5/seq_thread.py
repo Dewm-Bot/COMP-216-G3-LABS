@@ -2,25 +2,31 @@ from download_image import dl_img
 import time
 import threading
 
-def sequential_download(img_urls):
+def sequential_download(img_urls,save_folder):
     start_time = time.perf_counter()
     
     for url in img_urls:
-        dl_img(url)
+        try:
+            dl_img(url,save_folder)
+        except Exception as e:
+            print(f"Error: {e}")
     
     end_time = time.perf_counter()
     
     elapsed_time = end_time - start_time
     print(f"Sequential download completed in {elapsed_time} seconds")
 
-def threaded_download(img_urls):
+def threaded_download(img_urls,save_folder):
     start_time = time.perf_counter()
     
     threads = []
     for url in img_urls:
-        t = threading.Thread(target=dl_img, args=(url,))
-        threads.append(t)
-        t.start()
+        try:
+            t = threading.Thread(target=dl_img, args=(url,save_folder))
+            threads.append(t)
+            t.start()
+        except Exception as e:
+            print(f"Error: {e}")
     
     for t in threads:
         t.join()
@@ -47,7 +53,7 @@ if __name__ == "__main__":
     ]
     
     print("Starting sequential download...")
-    sequential_download(img_urls)
+    sequential_download(img_urls,'sequential-downloads')
     
     print("\nStarting threaded download...")
-    threaded_download(img_urls)
+    threaded_download(img_urls,'threaded-download')
