@@ -14,4 +14,4 @@
 
 ## Completed Labs:
 ### [Lab 5: Image Downloader](/LAB-5)
-*Issues are listed:* [*Here*](https://github.com/Dewm-Bot/COMP-216-G3-LABS/issues?q=is%3Aissue+is%3Aopen+label%3ALAB-5).
+*Remaining Possible Enhancements are listed:* [*Here*](https://github.com/Dewm-Bot/COMP-216-G3-LABS/issues?q=is%3Aissue+is%3Aopen+label%3ALAB-5).
