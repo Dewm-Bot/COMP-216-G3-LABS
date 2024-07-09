@@ -1,0 +1,3 @@
+I'm a file that has been transferred to the server via SSH and SFTP! :)
+
+Have I been transferred safely?
