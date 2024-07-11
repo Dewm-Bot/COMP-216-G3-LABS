@@ -3,7 +3,7 @@
 
 ## Current Lab:
 
-### [Lab 6: Interacting with remote Systems & Data Generator]() [/LAB-6]
+### [Lab 6: Interacting with remote Systems & Data Generator]()[/LAB-6]
 **TODO:**
 
 *Please Check the issues page* [Here.](https://github.com/Dewm-Bot/COMP-216-G3-LABS/issues?q=label%3ALAB-6+).
