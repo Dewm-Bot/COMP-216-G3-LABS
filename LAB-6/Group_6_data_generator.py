@@ -1,8 +1,14 @@
+# Group6 
+# Alex Rahemat
+# Sua Cha
+# Mohammed Aadil
+# Ujjwal Poudel
+
 import random
 import matplotlib.pyplot as plt
 
 class SensorSimulator:
-    def __init__(self, min_value=0, max_value=500, seed=None):
+    def __init__(self, min_value=18, max_value=21, seed=None):
         """
         Initializing the sensor simulator with optional min and max values, and an optional random seed.
         
@@ -58,6 +64,7 @@ class SensorSimulator:
         plt.show()
 
 # Example usage
-sensor = SensorSimulator(min_value=18, max_value=21)  # Simulating a temperature sensor
-values = sensor.generate_values(200)  # Generating 600 sensor values
-sensor.plot_values(values)  # Plotting the generated sensor values
+if __name__ == "__main__":
+    sensor = SensorSimulator(min_value=18, max_value=21)  # Simulating a temperature sensor
+    values = sensor.generate_values(500)  # Generating 500 sensor values
+    sensor.plot_values(values)  # Plotting the generated sensor values
