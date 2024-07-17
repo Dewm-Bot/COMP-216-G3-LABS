@@ -34,7 +34,7 @@ class ftpwebmdl:
 					self.ftp.cwd(item_path)
 					if item == self.folder_name:
 						found_folders.append(item_path)
-						print(f"{self.ftp.host}: Found folder {item_path}")
+						print(f"(SUCCESS) {self.ftp.host}: Found folder {item_path}")
 					else:
 						found_folders += self.folderhunt(item_path)
 				except ftplib.error_perm:
@@ -99,6 +99,7 @@ if __name__ == "__main__":
 	local_folder = "webm_download"
 	remote_folder = "video"
 	starting_directory = "/"
+	file_ext = ".webm"
 
 	#Init
 	try:
