@@ -13,7 +13,7 @@ import tkinter as tk
 from math import pi, cos, sin
 
 class TemperatureGauge(tk.Canvas):
-    def __init__(self, parent, width=300, height=300, **kwargs):
+    def __init__(self, parent, width=280, height=280, **kwargs):
         super().__init__(parent, width=width, height=height, **kwargs)
         self.width = width
         self.height = height
@@ -60,10 +60,10 @@ class App(tk.Tk):
         self.title('Temperature Gauge')
         self.geometry('350x400')
         self.gauge = TemperatureGauge(self)
-        self.gauge.pack(pady=20)
+        self.gauge.pack(pady=5)
 
         self.temp_entry = tk.Entry(self)
-        self.temp_entry.pack(pady=10)
+        self.temp_entry.pack(pady=5)
         self.set_temp_button = tk.Button(self, text='Set Temperature', command=self.update_temperature)
         self.set_temp_button.pack()
 
