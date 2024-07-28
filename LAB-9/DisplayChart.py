@@ -1,5 +1,25 @@
 import tkinter as tk
 from tkinter import messagebox
+import random  # Import random for generating values
+
+# SensorSimulator class from LAB6 copied here
+class SensorSimulator:
+    def __init__(self, min_value=18, max_value=21, seed=None):
+        self.min_value = min_value
+        self.max_value = max_value
+        if seed is not None:
+            random.seed(seed)
+    
+    def _generate_normalized_value(self):
+        return random.random()
+    
+    @property
+    def value(self):
+        normalized_value = self._generate_normalized_value()
+        return self.min_value + (self.max_value - self.min_value) * normalized_value
+    
+    def generate_values(self, num_values=20):
+        return [self.value for _ in range(num_values)]
 
 class DisplayChart:
     def __init__(self, root,num_bars,bar_color,title,values):
@@ -50,6 +70,8 @@ class DisplayChart:
         
         max_value = max(self.values)
         bar_width = (self.canvas_width - 2 * self.padding) / self.num_bars
+
+        previous_x, previous_y = None, None  # Initialize previous_x and previous_y to store the previous bar's center coordinates
         
         for i in range(self.num_bars): #Draw bars
             value = self.values[start_index + i]
@@ -62,6 +84,14 @@ class DisplayChart:
             self.canvas.create_rectangle(x0, y0, x1, y1, fill=self.bar_color, outline=self.border_color)
             #Likely need to add the code to draw the lines here
 
+            # Add a line connecting the centers of adjacent bars
+            if previous_x is not None and previous_y is not None:
+                self.canvas.create_line(previous_x, previous_y, (x0 + x1) / 2, y0, fill="blue")
+
+            # Update the previous_x and previous_y to the current bar's center coordinates
+            previous_x = (x0 + x1) / 2
+            previous_y = y0
+
     def graph_update(self):
         try: #Update the graph with the new start index
             start_index = int(self.entry.get())
@@ -70,9 +100,8 @@ class DisplayChart:
         self.graph_gen(start_index)
 
 if __name__ == "__main__":
-    #TEMP VALUES, PLEASE CHANGE TO DATA GEN VALUES
-    values = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100]
-    #Change name maybe
+    sensor = SensorSimulator(min_value=18, max_value=21)  # Create a sensor simulator instance
+    values = sensor.generate_values(20)  # Generate 20 values using the sensor simulator
     title = "Display Chart"
     bar_color = "lightblue"
     num_bars = 6
