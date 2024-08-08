@@ -24,15 +24,18 @@ def create_data():
     return data
 
 def print_data(data):
-    print(f"ID: {data['id']}")
-    print(f"Patient: {data['patient']}")
-    print(f"Time: {data['time']}")
-    print(f"Heart Rate: {data['heart_rate']}")
-    print(f"Respiratory Rate: {data['respiratory_rate']}")
-    print(f"Heart Rate Variability: {data['heart_rate_variability']}")
-    print(f"Body Temperature: {data['body_temperature']}")
-    print(f"Blood Pressure: {data['blood_pressure']['systolic']}/{data['blood_pressure']['diastolic']}")
-    print(f"Activity: {data['activity']}")
+    try:
+        print(f"ID: {data['id']}")
+        print(f"Patient: {data['patient']}")
+        print(f"Time: {data['time']}")
+        print(f"Heart Rate: {data['heart_rate']}")
+        print(f"Respiratory Rate: {data['respiratory_rate']}")
+        print(f"Heart Rate Variability: {data['heart_rate_variability']}")
+        print(f"Body Temperature: {data['body_temperature']}")
+        print(f"Blood Pressure: {data['blood_pressure']['systolic']}/{data['blood_pressure']['diastolic']}")
+        print(f"Activity: {data['activity']}")
+    except KeyError as e:
+        print(f"Missing data in the record: {e}")
 
 # Example usage:
 if __name__ == "__main__":
