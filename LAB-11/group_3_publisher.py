@@ -3,17 +3,24 @@ import json
 import time
 from group_3_util import create_data
 
-def publish():
+def publish(repeat=5):
     client = mqtt.Client()
-    client.connect("mqtt.eclipseprojects.io", 1883, 60) 
 
-    for _ in range(5):
-        data = create_data()
-        payload = json.dumps(data)
+    try:
+        client.connect("mqtt.eclipseprojects.io", 1883, 60)
+    except Exception as e:
+        print(f"Failed to connect to MQTT broker: {e}")
+        return
 
-        client.publish("test/topic", payload)
-        print(f"Published: {payload}")
-
+    for _ in range(repeat):
+        try:
+            data = create_data()
+            payload = json.dumps(data)
+            client.publish("test/topic", payload)
+            print(f"Published: {payload}")
+        except Exception as e:
+            print(f"Failed to publish message: {e}")
+        
         time.sleep(2)
 
     client.disconnect()
