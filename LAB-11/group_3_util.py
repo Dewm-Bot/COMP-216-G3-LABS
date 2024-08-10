@@ -25,7 +25,7 @@ def create_data():
 
 def print_data(data):
     try:
-        print(f"ID: {data['id']}")
+        print(f"\nID: {data['id']}")
         print(f"Patient: {data['patient']}")
         print(f"Time: {data['time']}")
         print(f"Heart Rate: {data['heart_rate']}")
@@ -41,3 +41,4 @@ def print_data(data):
 if __name__ == "__main__":
     data = create_data()
     print_data(data)
+
