@@ -4,7 +4,7 @@ import time
 from group_3_util import create_data
 
 def publish(repeat=5):
-    client = mqtt.Client()
+    client = mqtt.Client(protocol=mqtt.MQTTv311)
 
     try:
         client.connect("mqtt.eclipseprojects.io", 1883, 60)
