@@ -101,15 +101,15 @@ class Subscriber:
                 sensor_value = data['sensor_value']
                 timestamp = data['timestamp']
 
-                #Update GUI
-                self.update_chart(sensor_value)
-
-                #Log
-                self.log_data(sensor_value, timestamp)
-
-                #Error Handling
+                #Check if Message is in range
                 if sensor_value < self.MIN_VALUE or sensor_value > self.MAX_VALUE:
-                    self.log_error(f"{timestamp} - Value: {sensor_value} out of range!") #Range handling
+                    self.log_error(f"{timestamp} - Value: {sensor_value} out of range!") 
+                else:
+                    #Log
+                    self.log_data(sensor_value, timestamp)
+                    #Update Chart
+                    self.update_chart(sensor_value)
+                #Error Handling
             except json.JSONDecodeError as e:
                 self.log_error(f"Failed to decode JSON - {e}")
             except KeyError as e:
@@ -129,7 +129,7 @@ class Subscriber:
         self.log_text.yview(tk.END)
 
     def log_error(self, message): #Error message handler (Log)
-        self.log_text.insert(tk.END, f"[ERROR] {Message}\n", "error")
+        self.log_text.insert(tk.END, f"[ERROR] {message}\n", "error")
         self.log_text.yview(tk.END)
 
     def on_connect(self, client, userdata, flags, rc):
